@@ -1,0 +1,22 @@
+.frame {
+    border: 2px solid #b4b4b4;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 4px 4px 4px #CCCCCC;
+  }
+
+body {
+  background-color: #FFFFFF;
+}
+h1 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+}
+.content {
+  max-width: 600px;
+  margin: auto;
+}
+
