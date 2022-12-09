@@ -14,6 +14,23 @@ h1 {
   color: #333333;
 }
 
+.button
+{
+    position: relative;
+    display: inline-block;
+    padding: 19px 39px 18px 39px;
+    color: rgb(0, 0, 0);
+    margin: 0 auto;
+    background: #d3d3d3;
+    font-size: 25px;
+    text-align: center;
+    font-style: normal;
+    border: 1px solid #000000;
+    border-width: 1px 1px 1px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
 body {
   background-color: #FFFFFF;
   font-family: 'Open Sans', sans-serif;

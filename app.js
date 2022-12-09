@@ -46,4 +46,10 @@ const callApi = async (url,parameters,fileName) => {
 
 
 callApi(url,parameters,'SomeCoins');
+
+document.getElementById('refreshButton').onclick = function(){
+    callApi(url,parameters,'SomeCoins');
+    console.log("Refreshed");
+}
+
 // callApi(urlList,'','market');
