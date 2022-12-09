@@ -1,5 +1,5 @@
-const fs = require('fs');
-process.removeAllListeners('warning');
+// const fs = require('fs');
+// process.removeAllListeners('warning');
 
 const url = 'https://api.coingecko.com/api/v3/simple/price?'
 const urlList = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc'
@@ -33,17 +33,17 @@ const callApi = async (url,parameters,fileName) => {
     const response = await fetch(urlToFetch);
     const data = await response.json();
     console.log(data);
-    fs.promises.writeFile(`data_${fileName}.json`, JSON.stringify(data), function(err) {
-                if (err) {
-                    console.log(err);
-                }
-            });
+    // fs.promises.writeFile(`data_${fileName}.json`, JSON.stringify(data), function(err) {
+    //             if (err) {
+    //                 console.log(err);
+    //             }
+    //         });
+    document.getElementById("btcprice").innerHTML= data.bitcoin['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
+    document.getElementById("ethprice").innerHTML= data.ethereum['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
+    document.getElementById("paxgprice").innerHTML= data['pax-gold']['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
 }
 
 
 
 callApi(url,parameters,'SomeCoins');
-callApi(urlList,'','market');
-
-// write a version of callApi without async and await
-// connect to Git/Github
+// callApi(urlList,'','market');
