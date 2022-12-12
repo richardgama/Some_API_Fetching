@@ -1,10 +1,19 @@
 .frame {
     border: 2px solid #b4b4b4;
-    border-radius: 8px;
+    border-radius: 16px;
     padding: 16px;
     box-shadow: 4px 4px 4px #CCCCCC;
     align-items: center;
   }
+
+.optionSelection {
+  border: 2px solid #b4b4b4;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 4px 4px 4px #CCCCCC;
+  align-items: center;
+  width: 200px;
+}
 
 h1 {
   text-align: left;

@@ -1,55 +1,75 @@
 // const fs = require('fs');
 // process.removeAllListeners('warning');
 
-const url = 'https://api.coingecko.com/api/v3/simple/price?'
-const urlList = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc'
+const url = 'https://api.coingecko.com/api/v3/coins/'
 
-const parameters = {
-    'ids' : ['bitcoin','ethereum', 'pax-gold'],
-    'vs_currencies' : 'eur'
-}
+const coins = ['bitcoin','binancecoin','ethereum', 'pax-gold']
+let currency = 'eur'
 
-const paramUrl = (parameters) => {
-    str = '';
-    for (const param of Object.entries(parameters)) {
-        if(param[0] == 'metric'){str = str + param[1]}
-        else{
-            str = str + param[0] + '=' + param[1] + '&';
+const symbol = new Map(
+    [['eur', ' €'],
+     ['usd', ' $'],]
+)
+
+const setCurrency = (newCurrency) => {currency = newCurrency; fetchAll();}
+
+// function getDate(){
+//     const now = new Date();
+//     return `${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`;
+// }
+
+// function getLastWeeksDate() {
+//     const now = new Date();
+  
+//     const lastWeekDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+//     return `${lastWeekDate.getDate()}-${lastWeekDate.getMonth()+1}-${lastWeekDate.getFullYear()}`;
+//   }
+
+// const LastWeeksDate = getLastWeeksDate()
+// const Now = getDate();
+
+
+const callApi = async (coin,currency) => {
+
+        const parameters = {
+            'vs_currency' : currency,
+            'days' : 1,
+            'interval' : 'daily'
         }
-      }
-    return (str.slice(0,-1));
-}
+    
+        const urlToFetch = url + `${coin}/` + 'market_chart?' + new URLSearchParams(parameters).toString();
+    
+        const response = await fetch(urlToFetch);
+        const data = await response.json();
+        console.log(data);
 
-const urlApi = url + paramUrl(parameters);
+        const priceHistoryRaw = data.prices;
+        const priceHistory = [];
+        for(price of priceHistoryRaw){priceHistory.push(price[1]);}; priceHistory.reverse();
+        console.log(priceHistory);
 
+        const coinHtmlPrice = coin + '_price0';
+        const coinHtmlVar = coin + '_var1';
+        const ccySymbol = symbol.get(currency);
 
-// ################# Coingecko API using fetch
+        document.getElementById(coinHtmlPrice).innerText= priceHistory[0].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + ccySymbol;
 
-const callApi = async (url,parameters,fileName) => {
-    let urlToFetch = url;
-    if(parameters != ''){
-        urlToFetch += new URLSearchParams(parameters).toString();
+        const var1 = ((priceHistory[0]/priceHistory[1]-1)*100)
+
+        if(var1>0){
+            document.getElementById(coinHtmlVar).innerText = "+" + var1.toFixed(1).toString() + ' %';
+            document.getElementById(coinHtmlVar).style.color = 'green';
+        }
+        else{
+            document.getElementById(coinHtmlVar).innerText = var1.toFixed(1).toString() + ' %';
+            document.getElementById(coinHtmlVar).style.color = 'red';
+        }
     }
-    const response = await fetch(urlToFetch);
-    const data = await response.json();
-    console.log(data);
-    // fs.promises.writeFile(`data_${fileName}.json`, JSON.stringify(data), function(err) {
-    //             if (err) {
-    //                 console.log(err);
-    //             }
-    //         });
-    document.getElementById("btcprice").innerHTML= data.bitcoin['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
-    document.getElementById("ethprice").innerHTML= data.ethereum['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
-    document.getElementById("paxgprice").innerHTML= data['pax-gold']['eur'].toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' €';
+
+
+const fetchAll = () =>{
+    for(coin of coins){callApi(coin,currency);}
+    console.log('Market data for selected coins has been fetched');
 }
 
-
-
-callApi(url,parameters,'SomeCoins');
-
-document.getElementById('refreshButton').onclick = function(){
-    callApi(url,parameters,'SomeCoins');
-    console.log("Refreshed");
-}
-
-// callApi(urlList,'','market');
+fetchAll();

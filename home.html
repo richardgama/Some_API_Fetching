@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>My Personal Webpage</title>
-        <link rel = "stylesheet" href="home.css">
-      </head>
+<head>
+    <title>Useful data</title>
+    <link rel = "stylesheet" href="home.css">
+</head>
 
 <body>
 
-<h1>Some information</h1>
+<h1>Useful data</h1>
 
-<div class="refresh">
-    <center>
-        <button id="refreshButton">Refresh</button>
-    </center>
-</div> 
+<center>
+    <div class="optionSelection">
+        <INPUT TYPE="Radio" Name="currency" Value="EUR" onclick="setCurrency('eur');">EUR
+        <INPUT TYPE="Radio" Name="currency" Value="USD" onclick="setCurrency('usd');">USD
+        <br><br>
+        <button id="refreshButton" onclick="fetchAll();">Refresh</button>
+    </div>
+</center>
+
 <br>
 
 <div class="content">
 
     <div class="frame">
-    <p><b>Bitcoin: </b><label id="btcprice"></label></p>
+        <p>
+            <b>Bitcoin </b><br> <font size="+2"><label id="bitcoin_price0"></label></font> 
+            <b><label id="bitcoin_var1"></label></b>
+        </p>
     </div>
 
     <br>
 
     <div class="frame">
-        <p><b>Ethereum: </b><label id="ethprice"></label></p>
+        <p>
+            <b>Binance Coin </b><br> <font size="+2"><label id="binancecoin_price0"></label></font> 
+            <b><label id="binancecoin_var1"></label></b>
+        </p>
     </div>
 
     <br>
 
     <div class="frame">
-        <p><b>Pax Gold: </b><label id="paxgprice"></label></p>
+        <p>
+            <b>Ethereum </b><br> <font size="+2"><label id="ethereum_price0"></label></font> 
+            <b><label id="ethereum_var1"></label></b>
+        </p>
+    </div>
+
+    <br>
+
+    <div class="frame">
+        <p>
+            <b>Pax Gold </b><br> <font size="+2"><label id="pax-gold_price0"></label></font> 
+            <b><label id="pax-gold_var1"></label></b>
+        </p>
     </div>
     
 </div>
