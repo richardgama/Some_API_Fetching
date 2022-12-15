@@ -8,14 +8,16 @@
 
 <body>
 
-<h1>Useful data</h1>
+<!-- <h1>Useful data</h1> -->
 
 <center>
     <div class="optionSelection">
-        <INPUT TYPE="Radio" Name="currency" Value="EUR" onclick="setCurrency('eur');">EUR
-        <INPUT TYPE="Radio" Name="currency" Value="USD" onclick="setCurrency('usd');">USD
-        <br><br>
-        <button id="refreshButton" onclick="fetchAll();">Refresh</button>
+        <!-- <INPUT TYPE="Radio" Name="currency" Value="EUR" onclick="setCurrency('eur');">EUR
+        <INPUT TYPE="Radio" Name="currency" Value="USD" onclick="setCurrency('usd');">USD -->
+        <button id="eurButton" onclick="setCurrency('eur');">EUR</button>
+        <button id="usdButton" onclick="setCurrency('usd');">USD</button>
+        <!-- <br><br>
+        <button id="refreshButton" onclick="fetchAll();">Refresh</button> -->
     </div>
 </center>
 
@@ -25,7 +27,8 @@
 
     <div class="frame">
         <p>
-            <b>Bitcoin </b><br> <font size="+2"><label id="bitcoin_price0"></label></font> 
+            <style>img {vertical-align: middle;}</style><img id="bitcoin_img" alt="Bitcoin logo" width="6%" height="6%"></style>
+            <b>Bitcoin (BTC) </b><br> <font size="+2"><label id="bitcoin_price0"></label></font> 
             <b><label id="bitcoin_var1"></label></b>
         </p>
     </div>
@@ -34,7 +37,8 @@
 
     <div class="frame">
         <p>
-            <b>Binance Coin </b><br> <font size="+2"><label id="binancecoin_price0"></label></font> 
+            <style>img {vertical-align: middle;}</style><img id="binancecoin_img" alt="Binance coin logo" width="6%" height="6%"></style>
+            <b>Binance Coin (BNB) </b><br> <font size="+2"><label id="binancecoin_price0"></label></font> 
             <b><label id="binancecoin_var1"></label></b>
         </p>
     </div>
@@ -43,7 +47,8 @@
 
     <div class="frame">
         <p>
-            <b>Ethereum </b><br> <font size="+2"><label id="ethereum_price0"></label></font> 
+            <style>img {vertical-align: middle;}</style><img id="ethereum_img" alt="Ethereum logo" width="6%" height="6%"></style>
+            <b>Ethereum (ETH) </b><br> <font size="+2"><label id="ethereum_price0"></label></font> 
             <b><label id="ethereum_var1"></label></b>
         </p>
     </div>
@@ -52,11 +57,12 @@
 
     <div class="frame">
         <p>
-            <b>Pax Gold </b><br> <font size="+2"><label id="pax-gold_price0"></label></font> 
+            <style>img {vertical-align: middle;}</style><img id="pax-gold_img" alt="Pax Gold logo" width="6%" height="6%"></style>
+            <b>Pax Gold (PAXG) </b><br> <font size="+2"><label id="pax-gold_price0"></label></font> 
             <b><label id="pax-gold_var1"></label></b>
         </p>
     </div>
-    
+
 </div>
 
 <script src="app.js"></script>
