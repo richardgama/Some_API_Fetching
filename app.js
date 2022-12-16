@@ -30,7 +30,7 @@ const setCurrency = (newCurrency) => {currency = newCurrency; fetchAll();}
 
 const callApi = async (coin,currency) => {
 
-    document.body.style.backgroundImage ="url = https://source.unsplash.com/1600x900?sea"
+    // document.body.style.backgroundImage ="url = https://source.unsplash.com/1600x900?sea"
 
     const parameters = {
         'vs_currency' : currency,
